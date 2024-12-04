@@ -41,7 +41,7 @@ qgis.filesort <- function(input_path, output_dir ="", remove_old = FALSE) {
   if (output_dir == ""){
     output_dir <- tools::file_path_sans_ext(input_path)
     # Create new folder
-    if (file.exists(output_dir) == FALSE) {
+    if (!file.exists(output_dir)) {
       dir.create(output_dir)
       print(paste("Folder created:", project_sans))
     }
@@ -94,7 +94,7 @@ qgis.filesort <- function(input_path, output_dir ="", remove_old = FALSE) {
   # Save xml, zip everything back up
   print("Reassembling QGIS project file...")
   write_xml(project_xml, project_new, options = "as_xml")
-  zip(paste(output_dir, "/", project_file, sep=""), files = c(project_new, list.files(path = output_dir, pattern="_styles.db", full.names = TRUE)))
+  zip(paste(output_dir, "/", project_file, sep=""), files = c(project_new, list.files(path = output_dir, pattern="_styles.db", full.names = TRUE)), extras = "--junk-paths")
   # Delete the friends we made along the way
   file.remove(c(project_copy, project_new, list.files(path = output_dir, pattern="_styles.db", full.names = TRUE)))
   # Remove of file if requested and if file was successfully copied

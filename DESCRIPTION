@@ -1,0 +1,13 @@
+Package: geoRssistant
+Type: Package
+Title: Assistant for working with geo data
+Version: 0.1.0
+Author: Jannis Midasch
+Maintainer: Jannis Midasch <jannis.midasch@midasch-geovis.de>
+Description: Provides a number of quality of live functions to assist with working with geodata.
+License: GPL-3
+Encoding: UTF-8
+Depends: 
+  xml2,
+  utils
+RoxygenNote: 7.3.2

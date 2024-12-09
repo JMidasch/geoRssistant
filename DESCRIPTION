@@ -9,5 +9,8 @@ License: GPL-3
 Encoding: UTF-8
 Depends: 
   xml2,
-  utils
+  utils,
+  raster,
+  sp,
+  stats
 RoxygenNote: 7.3.2

@@ -25,9 +25,9 @@ layer files and adjusting their paths to be relative to the new directory.
 Metadata, styling, and definition queries are preserved during the operation.
 }
 \examples{
-# Example usage
-qgis.filesort(input_path = "C:/Users/janni/Documents/00_eagle/UrbanFormAndSociety/20241023_Tauberbischofsheim/QGIS/20241119_TBB.qgz",
+ \dontrun{
+qgis.filesort(input_path = "/path/to/project.qgz",
               output_dir = "",
               remove_old = FALSE)
-
+}
 }

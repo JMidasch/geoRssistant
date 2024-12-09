@@ -15,11 +15,11 @@
 #' @param remove_old Logical, if TRUE, deletes old files after copying.
 #'
 #' @examples
-#' # Example usage
-#' qgis.filesort(input_path = "C:/Users/janni/Documents/00_eagle/UrbanFormAndSociety/20241023_Tauberbischofsheim/QGIS/20241119_TBB.qgz",
+#'  \dontrun{
+#' qgis.filesort(input_path = "/path/to/project.qgz",
 #'               output_dir = "",
 #'               remove_old = FALSE)
-#'
+#' }
 #' @importFrom xml2 read_xml xml_find_all xml_text xml_set_text write_xml
 #' @importFrom utils unzip zip
 #' @export

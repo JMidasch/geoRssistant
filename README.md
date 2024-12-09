@@ -12,7 +12,7 @@ When you download geodata from a governmental open geodata portal you often have
 
 #### Solution:
   
-This function unzips all zip archives in a folder and merges all raster they contain.
+This function unzips all zip archives in a folder and merges all raster files they contain.
 
 ### qgis.filesort(input_path, output_dir ="", remove_old = FALSE)
   
@@ -23,3 +23,10 @@ When you work on a QGIS plugin for a extended period of time and don't keep a cl
 #### Solution:
   
 This function takes a QGIS-project as input and copies it and all files related to it's layers to a single folder. The layer sources in the QGIS project are adjusted accordingly and definition queries, styles etc. are kept intact in the process.
+
+## TODO:
+- Add installation guide
+- Update function: Sort layer by category for qgis.filesort()
+- Add new function: Relief visualization
+- Add new function: Geozone checker
+- Add new function: CRS batch transformer

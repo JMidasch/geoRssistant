@@ -28,5 +28,6 @@ This function takes a QGIS-project as input and copies it and all files related 
 - Add installation guide
 - Update function: Sort layer by category for qgis.filesort()
 - Add new function: Relief visualization
+- Add new function: REM generator
 - Add new function: Geozone checker
 - Add new function: CRS batch transformer

@@ -95,7 +95,7 @@ rastertile.merge <- function(input_dir = ".", pattern, input_ext, epsg ="25832",
     output_name <- paste0(input_dir, "/", pattern, "_merged")
     writeRaster(mosaic_raster, filename = output_name, format = "GTiff", overwrite = TRUE)
     # Print completion message
-    print(paste("Mosaicking complete and saved as", output_name))
+    print(paste0("Mosaicking complete and saved as ", output_name, ".tif"))
   } else {
     print("No valid rasters to mosaic.")
   }

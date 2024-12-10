@@ -12,5 +12,7 @@ Depends:
   utils,
   raster,
   sp,
-  stats
+  stats,
+  terra,
+  whitebox
 RoxygenNote: 7.3.2

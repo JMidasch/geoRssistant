@@ -12,8 +12,12 @@ library(devtools)
 install_github("JMidasch/geoRssistant")
 library(geoRssistant)
 ```
-  
+
+---
+
 ## Currrently included functions:
+
+---
 
 ### Extract raw sensor data from DJI thermal images
 
@@ -29,6 +33,8 @@ The actual thermal data of thermal images taken by DJI hardware such as the Mavi
 
 This function extracts the thermal data from all images in a directory and saves it to individual tifs in another directory while preserving the metadata necessary for further processing in photogrammetry software. This allows the user to either work with the raw sensor data directly or to apply their own custom calibration.
 
+---
+
 ### Merge Raster Tiles
 
 ```R 
@@ -42,6 +48,8 @@ When you download geodata from a governmental open geodata portal you often have
 #### Solution:
   
 This function unzips all zip archives in a folder and merges all raster files they contain.
+
+---
 
 ### Create a Relative Elevation Model (REM)
 
@@ -61,6 +69,7 @@ The R river.rem() function takes this rough centerline and uses it to create a R
 
 This workflow is heavily based on [the tutorial by Daniel Coe](https://dancoecarto.com/creating-rems-in-qgis-the-idw-method).
 
+---
 
 ### Sort QGIS Layer Files
 
@@ -74,6 +83,8 @@ When you work on a QGIS project for a extended period of time and don't keep a c
 #### Solution:
   
 This function takes a QGIS project as input and copies it and all files related to it's layers to a single folder. The layer sources in the QGIS project are adjusted accordingly and definition queries, styles etc. are kept intact in the process.
+
+---
 
 ## TODO:
 - Add examples

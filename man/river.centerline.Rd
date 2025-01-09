@@ -2,39 +2,54 @@
 % Please edit documentation in R/river_centerline.R
 \name{river.centerline}
 \alias{river.centerline}
-\title{Extract River Centerline}
+\title{Extract River Centerlines from Points, Shapefiles, or GeoPackages}
 \usage{
-river.centerline(input_raster, threshold = 1e+05)
+river.centerline(input_raster, points, output_dir)
 }
 \arguments{
 \item{input_raster}{Path to the input DEM file in GeoTIFF format (`.tif`).}
 
-\item{threshold}{Numeric. Flow accumulation threshold to define river networks. Cells with flow accumulation values above this threshold are considered part of the river network. Defaults to `1000`.}
+\item{points}{Either:
+- A `data.frame` or `matrix` with columns `x` and `y`, specifying the coordinates of the starting points.
+- A path to a shapefile (`.shp`), GeoPackage (`.gpkg`), or `terra` vector file containing the starting points.}
+
+\item{output_dir}{Path to save the output flow paths raster or vector file.}
 }
 \value{
-A `SpatVector` object containing the river centerlines as vector geometries.
+A file path to the output flow paths file (raster or vector format).
 }
 \description{
-This function processes a high-resolution Digital Elevation Model (DEM) to extract river centerlines
-by simulating water flow and determining areas of significant flow accumulation.
+This function processes a high-resolution Digital Elevation Model (DEM) to determine water flow paths
+starting from specific points, based on the D8 flow direction algorithm. Points can be provided as a
+`data.frame`, shapefile, GeoPackage, or `terra` vector.
 }
 \details{
 The function performs the following steps:
 1. Fills depressions in the DEM to ensure continuous flow simulation using the D8 algorithm.
-2. Computes flow accumulation across the DEM.
-3. Identifies river networks by applying a flow accumulation threshold.
-4. Converts the identified river raster into a vector of centerlines (line geometries).
+2. Computes flow direction from the DEM.
+3. Traces water flow paths starting from user-provided points or vector files.
 
-Intermediate products, such as the filled DEM and flow accumulation raster, are saved with filenames
+Intermediate products, such as the filled DEM and flow direction raster, are saved with filenames
 derived from the input DEM. If these files already exist, they are reused to save computation time on reruns.
 }
 \examples{
 \dontrun{
-# Extract river centerlines from a DEM with a flow accumulation threshold of 1000
-rivers <- river.centerline(input_raster = "path_to_dem.tif", threshold = 1000)
+# Example 1: Points as data.frame
+points <- data.frame(x = c(500000, 500100),
+                    y = c(4000000, 4000100))
+river.centerline(input_raster = "path_to_dem.tif",
+                 points = points,
+                 output_dir = "flow_paths.shp")
 
-# Save the vectorized river network
-writeVector(rivers, "river_centerlines.shp", filetype = "ESRI Shapefile")
+# Example 2: Points as shapefile
+river.centerline(input_raster = "path_to_dem.tif",
+                 points = "points.shp",
+                 output_dir = "flow_paths.shp")
+
+# Example 3: Points as GeoPackage
+river.centerline(input_raster = "path_to_dem.tif",
+                 points = "points.gpkg",
+                 output_dir = "flow_paths.shp")
 }
 
 }

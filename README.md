@@ -13,8 +13,6 @@ install_github("JMidasch/geoRssistant")
 library(geoRssistant)
 ```
 
----
-
 ## Currrently included functions:
 
 ---

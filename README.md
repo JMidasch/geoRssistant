@@ -15,7 +15,7 @@ library(geoRssistant)
   
 ## Currrently included functions:
 
-### Extract raw sensor data from DJI Thermal images
+### Extract raw sensor data from DJI thermal images
 
 ```R 
 djithermal.convert(input_dir, output_dir, height=512, width=640)
@@ -53,12 +53,14 @@ river.rem (input_raster, centerlines, river_width, output_raster = " ")
 #### Problem:
 
 Relative Elevation Models (REM) can not only help in the exploration of the microtopography around a river and reveal it's paleochannels, they can also look really really cool. However, the workflow to create them in a GIS can be very timeconsuming.
-https://dancoecarto.com/creating-rems-in-qgis-the-idw-method
 
 #### Solution:
 
 The river.centerline() function creates a rough centerline of a river based on a DEM and one or multiple startingpoints.
 The R river.rem() function takes this rough centerline and uses it to create a REM.
+
+This workflow is heavily based on [the tutorial by Daniel Coe](https://dancoecarto.com/creating-rems-in-qgis-the-idw-method).
+
 
 ### Sort QGIS Layer Files
 

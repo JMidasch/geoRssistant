@@ -1,6 +1,6 @@
 # WIP R-Package
 
-R-Package that adds a quality-of-life functions for working with geodata to R.
+R-Package that adds various quality-of-life functions for working with geodata to R.
 
 ## Installation Guide
 

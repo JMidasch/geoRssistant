@@ -26,12 +26,10 @@
 
 
 qgis.filesort <- function(input_path, output_dir ="", remove_old = FALSE) {
-
   # Check path validity
   if (!file.exists(input_path) || !grepl("\\.qgz$", input_path)) {
     stop("Invalid path: The path does not exist or is not a .qgz file.")
   }
-
   # Get path components
   project_file <- basename(input_path)
   project_dir <- dirname(input_path)
@@ -62,31 +60,33 @@ qgis.filesort <- function(input_path, output_dir ="", remove_old = FALSE) {
   for (layer in project_layernodes){
     # Get path from xml
     layerpath_old <- xml_text(layer)
-    # Catch definition queries
     layerpath_query <- ""
     if (grepl("\\|", layerpath_old)){
       print(paste("Definition Query caught in layer:", layerpath_old))
       layerpath_query <- paste0( "\\|", sub(".*\\|", "", layerpath_old))
       layerpath_old <- sub("\\|.*", "", layerpath_old)
     }
-    # Adjust path in xml
-    layerpath_file <- basename(layerpath_old)
-    xml_set_text(layer, paste0("./", layerpath_file, layerpath_query))
+    if(file.exists(layerpath_old)){
+      # Catch definition queries
+      # Adjust path in xml
+      layerpath_file <- basename(layerpath_old)
+      xml_set_text(layer, paste0("./", layerpath_file, layerpath_query))
 
-    # Get dir and filename without extension for the current layer
-    layerpath_dir <- file.path(project_dir, dirname(layerpath_old))
-    layerpath_sans <- tools::file_path_sans_ext(layerpath_file)
-    print(layerpath_sans)
+      # Get dir and filename without extension for the current layer
+      layerpath_dir <- dirname(layerpath_old)
+      layerpath_sans <- tools::file_path_sans_ext(layerpath_file)
+      print(layerpath_sans)
 
-    # Find file and all corresponding metadata files, copy them to new location
-    layerlist <- list.files(path = layerpath_dir, pattern = paste0("^", layerpath_sans, "\\..+$"), full.names = TRUE, recursive = FALSE)
-    for (layerfile in layerlist){
-      layerpath_new <- paste0(output_dir, "/", basename(layerfile))
-      file.copy(layerfile, layerpath_new)
-      # Remove of file if requested and if file was successfully copied
-      if(remove_old){
-        if(file.exists(layerpath_new)){
-          file.remove(layerfile)
+      # Find file and all corresponding metadata files, copy them to new location
+      layerlist <- list.files(path = layerpath_dir, pattern = paste0("^", layerpath_sans, "\\..+$"), full.names = TRUE, recursive = FALSE)
+      for (layerfile in layerlist){
+        layerpath_new <- paste0(output_dir, "/", basename(layerfile))
+        file.copy(layerfile, layerpath_new)
+        # Remove of file if requested and if file was successfully copied
+        if(remove_old){
+          if(file.exists(layerpath_new)){
+            file.remove(layerfile)
+          }
         }
       }
     }

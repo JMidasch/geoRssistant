@@ -1,18 +1,20 @@
 Package: geoRssistant
 Type: Package
 Title: Assistant for working with geo data
-Version: 0.1.1
+Version: 0.2.0
 Author: Jannis Midasch
 Maintainer: Jannis Midasch <jannis.midasch@midasch-geovis.de>
 Description: Provides a number of quality of live functions to assist with working with geodata.
 License: GPL-3
 Encoding: UTF-8
-Depends: 
+Imports: 
   xml2,
   utils,
-  raster,
-  sp,
+  sf,
+  gstat,
   stats,
   terra,
-  whitebox
+  whitebox,
+  caTools, 
+  exifr
 RoxygenNote: 7.3.2

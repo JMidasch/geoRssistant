@@ -80,7 +80,7 @@ djithermal.convert <- function(input_dir, output_dir, height=512, width=640){
       "-GPSAltitude=", in_exif$GPSAltitude[1], " ",
       "-GPSLatitude=", in_exif$GPSLatitude[1], " ",
       "-GPSLongitude=", in_exif$GPSLongitude[1], " ",
-      "-delete_original"
+      "-overwrite_original"
     )
 
     # Run a single exiftool command with all the arguments

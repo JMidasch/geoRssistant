@@ -17,11 +17,14 @@ with the same name as the QGIS project in the QGIS project's directory.}
 \description{
 This function moves a QGIS project and all the source files for its layers
 into a single directory. Source paths, styling, definition queries,
-and metadata are kept intact.
+and metadata are kept intact. Layer files are sorted into appropriate
+subdirectories ("Vector", "Raster", "Other") based on file extention.
 }
 \details{
 This function processes a QGIS project file, copying all the associated
 layer files and adjusting their paths to be relative to the new directory.
+Layers are sorted based on their type.
+
 Metadata, styling, and definition queries are preserved during the operation.
 }
 \examples{

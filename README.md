@@ -80,13 +80,12 @@ When you work on a QGIS project for a extended period of time and don't keep a c
   
 #### Solution:
   
-This function takes a QGIS project as input and copies it and all files related to it's layers to a single folder. The layer sources in the QGIS project are adjusted accordingly and definition queries, styles etc. are kept intact in the process.
+This function takes a QGIS project as input and copies it and all files related to it's layers to a single directory. Files are sorted into "Vector", "Raster" or "Other" subdirectories depending on the layer type. The layer sources in the QGIS project are adjusted accordingly and definition queries, styles etc. are kept intact in the process.
 
 ---
 
 ## TODO:
 - Add examples
-- Update function: Sort layer by category for qgis.filesort()
 - Add new function: Relief visualization
 - Add new function: Geozone checker
 - Add new function: CRS batch transformer

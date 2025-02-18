@@ -56,7 +56,7 @@ djithermal.convert <- function(input_dir, output_dir, height=512, width=640){
 
     # Decode base64
     thermal_data <- sub("^base64:", "", thermal_data)  # Remove 'base64:' prefix
-    thermal_data <- caTools::base64decode(thermal_data, what = "int", size=2)           # Decode base64 string
+    thermal_data <- caTools::base64decode(thermal_data, what = "int", size=2, endian = "little")           # Decode base64 string
 
     # Reshape the 1D vector into a 2D matrix (assuming 512x640 resolution)
     thermal_matrix <- matrix(thermal_data, nrow = height, ncol = width, byrow = TRUE)

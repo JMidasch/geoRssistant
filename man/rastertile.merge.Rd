@@ -6,25 +6,28 @@
 \usage{
 rastertile.merge(
   input_dir = ".",
-  pattern,
-  input_ext,
+  pattern = "",
+  input_ext = "tif",
   epsg = "25832",
   unzip = TRUE,
   remove_old = FALSE
 )
 }
 \arguments{
-\item{input_dir}{Path to the directory containing the raster files or `.zip` archives. Defaults to the current working directory (`"."`).}
+\item{input_dir}{Path to the directory containing the raster files, `.zip` or `.tar.gz` archives. Defaults to the current working directory (`"."`).}
 
 \item{pattern}{Filename pattern to filter the raster files (e.g., "tile" to match files named `tile01.tif`, `tile02.tif`, etc.).}
 
 \item{input_ext}{File extension of the raster files to process (e.g., `"xyz"`, `"tif"`, etc.). Do not include the `"."`.}
 
-\item{epsg}{EPSG code for the CRS of the raster data (default: `"25832"`).}
+\item{epsg}{EPSG code for the crs of the raster. Defaults to `"25832"` (UTM32).}
 
 \item{unzip}{Logical. If `TRUE`, unzips `.zip` archives in the directory before processing. Defaults to `TRUE`.}
 
 \item{remove_old}{Logical. If `TRUE`, deletes original files after extraction or processing. Defaults to `FALSE`.}
+}
+\value{
+Final mosaic as a `SpatRaster`
 }
 \description{
 Merges multiple raster files from a specified directory into a single mosaic raster.
@@ -34,8 +37,8 @@ an option to automatically unzip raster tile archives before processing.
 \details{
 This function processes raster files in a given directory that match a specified filename pattern.
 It supports handling `.xyz` and other raster file formats. The function performs the following steps:
-1. Optionally unzips `.zip` archives if `unzip = TRUE`.
-2. Reads and validates raster files based on the specified file extension.
+1. Optionally unzips `.zip`  and `.tar.gz` archives if `unzip = TRUE`.
+2. Reads raster files based on the specified file extension.
 3. Merges the raster tiles into a single mosaic, preserving the coordinate reference system (CRS).
 4. Saves the final mosaic as a GeoTIFF file.
 
@@ -44,10 +47,20 @@ The output raster retains metadata, styling, and definition queries where applic
 \examples{
 \dontrun{
 # Merge all `.xyz` raster tiles matching "tile" in the current directory
-rastertile.merge(input_dir = ".", pattern = "tile", input_ext = "xyz", epsg = "4326")
+rastertile.merge(
+  input_dir = ".",
+  pattern = "tile",
+  input_ext = "xyz"
+)
 
 # Merge `.tif` raster files from a specific folder and unzip archives first
-rastertile.merge(input_dir = "/path/to/data", pattern = "tile", input_ext = "tif", unzip = TRUE)
+rastertile.merge(
+  input_dir = "/path/to/data",
+  pattern = "tile",
+  input_ext = "tif",
+  epsg = "25832",
+  unzip = TRUE
+)
 }
 
 }

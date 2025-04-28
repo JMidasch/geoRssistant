@@ -15,9 +15,6 @@ djithermal.convert(input_dir, output_dir, height = 512, width = 640)
 
 \item{width}{Numeric. Width (in pixels) of the thermal image matrix. Default is 640.}
 }
-\value{
-A message summarizing the number of processed and skipped files. Output GeoTIFF files are saved in the specified output directory.
-}
 \description{
 This function processes thermal images captured in RJPEG format, extracts thermal data embedded in EXIF metadata,
 decodes the data, and converts it into GeoTIFF raster files. The function also copies relevant metadata to the output files.

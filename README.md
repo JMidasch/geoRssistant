@@ -4,7 +4,7 @@ R-Package that adds various quality-of-life functions for working with geodata t
 
 ## Installation Guide
 
-The package was developed with R version 4.4.2 on Windows. Mac & Linux haven't been tested.
+The package was developed with R version 4.4.3 on Windows. Mac & Linux haven't been tested.
 Use the following code to install and load the package:
 
 ```R
@@ -33,6 +33,23 @@ This function extracts the thermal data from all images in a directory and saves
 
 ---
 
+### Create overview map
+
+```R 
+map.aoi(aoi, basemap = NULL, dem_raster = NULL, dem_z = 14, map_crs = NULL, map_ext = 1, watermask = TRUE, aoi_colour = "#ff0000", landscape = NULL, aspectratio = 16/9)
+```
+  
+#### Problem:
+  
+For scientific papers, presentations etc. you always need a map to show where your research area is located. However, this can be very time consuming, especially if you want a consistent esthetic for different projects.
+
+#### Solution:
+  
+This function creates a simple, usable overview map for a research area just based on a polygon. If needed there are also a lot of additional customization options.
+
+---
+
+
 ### Merge Raster Tiles
 
 ```R 
@@ -41,19 +58,18 @@ rastertile.merge(input_dir = ".", pattern, input_ext, epsg ="25832", unzip = TRU
   
 #### Problem:
   
-When you download geodata from a governmental open geodata portal you often have to download several individual tiles, often in the form of individual zip archives. Unzipping every single archive and merging all the raster files so you can actually work with them takes way to much time.
+When you download geodata from a governmental open geodata portal you often have to download several individual tiles, often in the form of individual zip or tar.gz archives. Unzipping every single archive and merging all the raster files so you can actually work with them takes way to much time.
 
 #### Solution:
   
-This function unzips all zip archives in a folder and merges all raster files they contain.
+This function unzips all zip and tar.gz archives in a folder and merges all raster files they contain.
 
 ---
 
 ### Create a Relative Elevation Model (REM)
 
 ```R
-river.centerline(input_raster, points, output_dir)
-river.rem (input_raster, centerlines, river_width, output_raster = " ")
+river.rem(input_raster, centerline = NULL, seed_point = NULL, output_dir, output_pattern = "riverdem", river_width = 10, overwrite = FALSE)
 ```
 
 #### Problem:
@@ -62,8 +78,8 @@ Relative Elevation Models (REM) can not only help in the exploration of the micr
 
 #### Solution:
 
-The river.centerline() function creates a rough centerline of a river based on a DEM and one or multiple startingpoints.
-The R river.rem() function takes this rough centerline and uses it to create a REM.
+This function takes a Digital Elevation Model and a river centerline to create a REM. If no centerline is provided it will be generated automatically based on a user-provided seed point.
+Known issue: The function might get stuck while automatically generating the centerline.
 
 This workflow is heavily based on [the tutorial by Daniel Coe](https://dancoecarto.com/creating-rems-in-qgis-the-idw-method).
 
@@ -85,7 +101,6 @@ This function takes a QGIS project as input and copies it and all files related 
 ---
 
 ## TODO:
-- Add examples
 - Add new function: Relief visualization
 - Add new function: Geozone checker
 - Add new function: CRS batch transformer

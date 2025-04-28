@@ -12,6 +12,9 @@ library(devtools)
 install_github("JMidasch/geoRssistant")
 library(geoRssistant)
 ```
+## Example script with data can be found here:
+
+https://drive.google.com/drive/folders/1n6IJw87BRRDdnPujrhUaKPUazZIPR3s1?usp=sharing
 
 ## Currrently included functions:
 
